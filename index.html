@@ -76,6 +76,7 @@
       width: 100%;
       height: 300px;
       object-fit: cover;
+      cursor: pointer;
     }
 
     .product-card h2 {
@@ -139,52 +140,48 @@
       cursor: pointer;
     }
 
-    /* Scrollable Image Gallery */
+    /* Scrollable Image Gallery with Arrows */
     .gallery-container {
-  position: relative;
-  overflow: hidden;
-}
+    position: relative;
+    overflow: hidden;
+    }
 
-.image-gallery {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 10px 0;
-}
+    .image-gallery {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    }
 
-.image-gallery img {
-  height: 150px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  object-fit: cover;
-  cursor: pointer;
-}
+    .image-gallery img {
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    }
 
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  font-size: 20px;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  z-index: 10;
-}
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 20px;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 10;
+    }
 
-.scroll-btn.left {
-  left: 5px;
-}
-
-.scroll-btn.right {
-  right: 5px;
-}
-
-    .buy-btn:hover {
-      background: #444;
+    .scroll-btn.left {
+      left: 5px;
+    }
+    
+    .scroll-btn.right {
+      right: 5px;
     }
 
     /* Responsive Layout */
@@ -223,6 +220,7 @@
   </div>
 
   <!-- Product Catalog -->
+  <!-- Product 1 -->
   <section class="catalog" id="catalog">
     <div class="product-card" data-category="passportholders" data-price="1200">
       <button class="scroll-btn left">&lt;</button>
@@ -242,6 +240,7 @@
       <a href="#" class="colors-btn" data-colors="Red, Blue, Green, Gold Accent, Silver Accent">View Colors & Accents</a>
     </div>
 
+     <!-- Product 2 -->
     <div class="product-card" data-category="charms" data-price="400">
        <div class="image-gallery">
         <img src="images/Heart Charm1.png" alt="Heart Charms1">
@@ -257,6 +256,7 @@
       <a href="#" class="colors-btn" data-colors="Black, Brown, Tan">View Colors & Accents</a>
     </div>
 
+     <!-- Product 3 -->
     <div class="product-card" data-category="charms" data-price="450">
        <div class="image-gallery">
         <img src="images/Letter Charm1.png" alt="Letter Charms1">
@@ -342,19 +342,21 @@
       if (event.target === modal) modal.style.display = "none";
     };
 
+   // Scroll Buttons for Image Gallery
     document.querySelectorAll('.gallery-container').forEach(container => {
-  const gallery = container.querySelector('.image-gallery');
-  const leftBtn = container.querySelector('.scroll-btn.left');
-  const rightBtn = container.querySelector('.scroll-btn.right');
+    const gallery = container.querySelector('.image-gallery');
+    const leftBtn = container.querySelector('.scroll-btn.left');
+    const rightBtn = container.querySelector('.scroll-btn.right');
 
-  leftBtn.addEventListener('click', () => {
-    gallery.scrollBy({ left: -150, behavior: 'smooth' });
-  });
+    leftBtn.addEventListener('click', () => {
+      gallery.scrollBy({ left: -150, behavior: 'smooth' });
+    });
 
-  rightBtn.addEventListener('click', () => {
-    gallery.scrollBy({ left: 150, behavior: 'smooth' });
+    rightBtn.addEventListener('click', () => {
+      gallery.scrollBy({ left: 150, behavior: 'smooth' });
+    });
   });
-});
+    
   </script>
 </body>
 </html>
