@@ -152,14 +152,20 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 10px 0;
+
+    /* Scroll snap */
+    scroll-snap-type: x mandatory;
     }
 
     .image-gallery img {
-    height: 150px;
+    height: 300px;
     flex-shrink: 0;
     border-radius: 5px;
     object-fit: cover;
     cursor: pointer;
+
+    /* Each image is a snap point */
+    scroll-snap-align: start;
     }
 
     .scroll-btn {
@@ -345,18 +351,21 @@
     };
 
    // Scroll Buttons for Image Gallery
-    document.querySelectorAll('.gallery-container').forEach(container => {
-    const gallery = container.querySelector('.image-gallery');
-    const leftBtn = container.querySelector('.scroll-btn.left');
-    const rightBtn = container.querySelector('.scroll-btn.right');
+   document.querySelectorAll('.gallery-container').forEach(container => {
+   const gallery = container.querySelector('.image-gallery');
+   const leftBtn = container.querySelector('.scroll-btn.left');
+   const rightBtn = container.querySelector('.scroll-btn.right');
 
-    leftBtn.addEventListener('click', () => {
-      gallery.scrollBy({ left: -150, behavior: 'smooth' });
-    });
+   leftBtn.addEventListener('click', () => {
+    // Scroll by the width of one image + gap
+    const img = gallery.querySelector('img');
+    gallery.scrollBy({ left: -(img.offsetWidth + 10), behavior: 'smooth' });
+   });
 
-    rightBtn.addEventListener('click', () => {
-      gallery.scrollBy({ left: 150, behavior: 'smooth' });
-    });
+  rightBtn.addEventListener('click', () => {
+    const img = gallery.querySelector('img');
+    gallery.scrollBy({ left: img.offsetWidth + 10, behavior: 'smooth' });
+  });
   });
     
   </script>
