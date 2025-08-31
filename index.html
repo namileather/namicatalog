@@ -159,6 +159,7 @@
 
     .image-gallery img {
     height: 300px;
+    max-width: 100%;      /* image fits inside card */
     flex-shrink: 0;
     border-radius: 5px;
     object-fit: cover;
@@ -180,6 +181,14 @@
       cursor: pointer;
       border-radius: 5px;
       z-index: 10;
+
+      opacity: 0;              /* hidden by default */
+      transition: opacity 0.3s; /* smooth fade */
+    }
+
+    /* Arrows appear on hover */
+    .gallery-container:hover .scroll-btn {
+      opacity: 1;
     }
 
     .scroll-btn.left {
@@ -202,6 +211,19 @@
         max-width: 100%;
       }
     }
+
+    @media (max-width: 480px) {
+  .image-gallery img {
+    height: 120px;       /* slightly smaller for mobile */
+    }
+  
+    @media (max-width: 480px) {
+    .scroll-btn {
+      font-size: 16px;
+      padding: 3px 6px;
+    }
+  }
+      
   </style>
 </head>
 <body>
