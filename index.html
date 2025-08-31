@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAMI Product Catalog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f6f6f6;
+    }
+
+    header {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header img {
+      max-width: 150px;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 24px;
+      color: #111;
+    }
+
+    /* Controls Section */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .controls input,
+    .controls select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .catalog {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 250px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h2 {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #111;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #555;
+      padding: 0 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #111;
+      margin: 10px 0;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin: 10px 0 20px;
+      padding: 10px 20px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #444;
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+      .product-card {
+        max-width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="YOUR_LOGO_URL" alt="NAMI Logo">
+    <h1>NAMI Product Catalog</h1>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search products...">
+    <select id="category">
+      <option value="all">All Categories</option>
+      <option value="bags">Bags</option>
+      <option value="wallets">Wallets</option>
+      <option value="journals">Journals</option>
+    </select>
+    <select id="sort">
+      <option value="default">Sort by</option>
+      <option value="low-high">Price: Low to High</option>
+      <option value="high-low">Price: High to Low</option>
+    </select>
+  </div>
+
+  <!-- Product Catalog -->
+  <section class="catalog" id="catalog">
+    <div class="product-card" data-category="bags" data-price="2500">
+      <img src="https://via.placeholder.com/250x200" alt="Leather Bag">
+      <h2>Leather Bag</h2>
+      <p>Handcrafted with care, perfect for everyday style.</p>
+      <p class="price">₱2,500</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="product-card" data-category="wallets" data-price="1200">
+      <img src="https://via.placeholder.com/250x200" alt="Leather Wallet">
+      <h2>Leather Wallet</h2>
+      <p>Slim, elegant, and durable wallet to carry with you.</p>
+      <p class="price">₱1,200</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="product-card" data-category="journals" data-price="950">
+      <img src="https://via.placeholder.com/250x200" alt="Leather Journal">
+      <h2>Leather Journal</h2>
+      <p>For thoughts, sketches, and everything in between.</p>
+      <p class="price">₱950</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+  </section>
+
+  <script>
+    const searchInput = document.getElementById("search");
+    const categoryFilter = document.getElementById("category");
+    const sortSelect = document.getElementById("sort");
+    const catalog = document.getElementById("catalog");
+    const products = Array.from(catalog.getElementsByClassName("product-card"));
+
+    // Search
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      products.forEach(product => {
+        const text = product.innerText.toLowerCase();
+        product.style.display = text.includes(query) ? "block" : "none";
+      });
+    });
+
+    // Category Filter
+    categoryFilter.addEventListener("change", () => {
+      const selected = categoryFilter.value;
+      products.forEach(product => {
+        product.style.display =
+          selected === "all" || product.dataset.category === selected
+            ? "block"
+            : "none";
+      });
+    });
+
+    // Sort by Price
+    sortSelect.addEventListener("change", () => {
+      let sortedProducts = [...products];
+      if (sortSelect.value === "low-high") {
+        sortedProducts.sort((a, b) => a.dataset.price - b.dataset.price);
+      } else if (sortSelect.value === "high-low") {
+        sortedProducts.sort((a, b) => b.dataset.price - a.dataset.price);
+      }
+
+      catalog.innerHTML = "";
+      sortedProducts.forEach(p => catalog.appendChild(p));
+    });
+  </script>
+</body>
+</html>
