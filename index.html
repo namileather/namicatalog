@@ -139,6 +139,24 @@
       font-size: 24px;
       cursor: pointer;
     }
+    .color-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .color-table td {
+      padding: 6px 8px;
+      font-size: 14px;
+      color: #333;
+      border: none; /* no borders */
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .color-table strong {
+      color: #111;
+    }
 
     /* Scrollable Image Gallery with Arrows */
     .gallery-container {
@@ -206,23 +224,7 @@
       right: 5px;
     }
 
-    .color-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
     
-    .color-table td {
-      padding: 6px 8px;
-      font-size: 14px;
-      color: #333;
-      border: none; /* removes borders */
-      text-align: left;
-      vertical-align: top;
-    }
-
-    .color-table strong {
-      color: #111;
-    }
 
     /* Responsive Layout */
     @media (max-width: 768px) {
@@ -303,19 +305,20 @@
 
       <!-- Static Table Modal -->
       <div id="colorModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Available Colors & Accents</h3>
-        <table class="color-table">
-          <tr>
-            <td><strong>Leather Color:</strong></td>
-            <td>Black, Brown, Pink</td>
-          </tr>
-          <tr>
-            <td><strong>T'nalak:</strong></td>
-            <td>Pink, Blue, Red/Black</td>
-          </tr>
-        </table>
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Available Colors & Accents</h3>
+          <table class="color-table">
+            <tr>
+              <td><strong>Leather Color:</strong></td>
+              <td>Black, Brown, Pink</td>
+            </tr>
+            <tr>
+              <td><strong>T'nalak:</strong></td>
+              <td>Pink, Blue, Red/Black</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
 
