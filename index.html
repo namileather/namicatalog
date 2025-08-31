@@ -140,23 +140,48 @@
     }
 
     /* Scrollable Image Gallery */
-    .image-gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 10px;
-    }
-    .image-gallery img {
-      height: 300px;
-      flex-shrink: 0;
-      border-radius: 5px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .image-gallery img:hover {
-      transform: scale(1.05);
-    }
+    .gallery-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.image-gallery img {
+  height: 150px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.scroll-btn.left {
+  left: 5px;
+}
+
+.scroll-btn.right {
+  right: 5px;
+}
 
     .buy-btn:hover {
       background: #444;
