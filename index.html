@@ -113,6 +113,51 @@
       transition: background 0.3s;
     }
 
+     /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto; 
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: left;
+    }
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Scrollable Image Gallery */
+    .image-gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px;
+    }
+    .image-gallery img {
+      height: 150px;
+      flex-shrink: 0;
+      border-radius: 5px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
     .buy-btn:hover {
       background: #444;
     }
@@ -155,7 +200,11 @@
   <!-- Product Catalog -->
   <section class="catalog" id="catalog">
     <div class="product-card" data-category="passportholders" data-price="1200">
-      <img src="images/Passport with Tnalak Main.png" alt="Passport Holder">
+     <div class="image-gallery">
+        <img src="images/Passport with Tnalak Main.png" alt="Passport Holder">
+        <img src="images/Passport With Tnalak1.png" alt="Passport Holder2">
+        <img src="images/Passport with Tnalak2.png" alt="Passport Holder3">
+      </div>
       <h2>Passport Holder With T'nalak</h2>
       <p>Travel in style with our handcrafted leather passport holder, elevated with a strip of T’nalak - 
         a traditional handwoven fabric of the T’boli artisans in the Philippines.</p>
@@ -163,10 +212,14 @@
       <p>Leather Color: Black, Brown, Pink </p>
       <p>T'nalak: Pink,Blue, Red/Black</p>
       <p class="price">₱1,200</p>
+      <a href="#" class="colors-btn" data-colors="Red, Blue, Green, Gold Accent, Silver Accent">View Colors & Accents</a>
     </div>
 
     <div class="product-card" data-category="charms" data-price="400">
-      <img src="images/Heart Charm1.png" alt="Heart Charms">
+       <div class="image-gallery">
+        <img src="images/Heart Charm1.png" alt="Heart Charms1">
+        <img src="images/Heart Charm3.png" alt="Heart Charms2">
+      </div>
       <h2>Heart Charms</h2>
       <p>Handcrafted leather heart charms designed to add personality and color to your everyday essentials. Perfect as bag charms, 
         keychains, or thoughtful gifts.</p>
@@ -174,10 +227,15 @@
       <p>Leather Color: Black, Red, Yellow, Blue, Brown </p>
       <p>Bling-bling: Clover, Heatbeat, Letter, Hat, Pineapple, etc (Message us for more choices) </p>
       <p class="price">₱400</p>
+      <a href="#" class="colors-btn" data-colors="Black, Brown, Tan">View Colors & Accents</a>
     </div>
 
     <div class="product-card" data-category="charms" data-price="450">
-      <img src="images/Letter Charm1.png" alt="Letter Charms">
+       <div class="image-gallery">
+        <img src="images/Letter Charm1.png" alt="Letter Charms1">
+        <img src="images/Letter Charm2.png" alt="Letter Charms2">
+        <img src="images/Letter Charm3.png" alt="Letter Charms3">
+      </div>
       <h2>Letter Charms</h2>
       <p>Personalize your essentials with our handcrafted leather letter charms.Perfect statement accessory for bags, keys, 
         or as thoughtful, customized gifts.</p>
@@ -185,8 +243,18 @@
       <p>Leather Color: Black, Red, Yellow, Blue, Brown </p>
       <p>Bling-bling: Clover, Heatbeat, Letter, Hat, Pineapple, etc (Message us for more choices) </p>
       <p class="price">₱450</p>
+      <a href="#" class="colors-btn" data-colors="Black, Brown, Tan">View Colors & Accents</a>
     </div>
   </section>
+
+  <!-- Modal -->
+  <div id="colorModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Available Colors & Accents</h3>
+      <ul id="colorList"></ul>
+    </div>
+  </div>
 
   <script>
     const searchInput = document.getElementById("search");
