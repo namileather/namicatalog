@@ -147,7 +147,7 @@
       padding: 10px;
     }
     .image-gallery img {
-      height: 150px;
+      height: 300px;
       flex-shrink: 0;
       border-radius: 5px;
       object-fit: cover;
@@ -295,6 +295,25 @@
       catalog.innerHTML = "";
       sortedProducts.forEach(p => catalog.appendChild(p));
     });
+
+     // Colors & Accents Modal
+    const modal = document.getElementById("colorModal");
+    const colorList = document.getElementById("colorList");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll(".colors-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const colors = btn.dataset.colors.split(",").map(c => c.trim());
+        colorList.innerHTML = colors.map(c => `<li>${c}</li>`).join("");
+        modal.style.display = "block";
+      });
+    });
+
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => {
+      if (event.target === modal) modal.style.display = "none";
+    };
   </script>
 </body>
 </html>
